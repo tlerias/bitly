@@ -1,0 +1,35 @@
+<h1>Listing visits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Visits</th>
+      <th>Ip address</th>
+      <th>Visitor email</th>
+      <th>Referrer</th>
+      <th>Link item</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @visits.each do |visit| %>
+      <tr>
+        <td><%= link_to visit.id, visit_path(visit) %></td>
+        <td><%= visit.ip_address %></td>
+        <td><%= visit.visitor_email %></td>
+        <td><%= visit.referrer %></td>
+        <td><%= link_to visit.link_item.original_url, link_item_path(visit.link_item) %></td>
+        <td><%= link_to 'Show', visit %></td>
+        <td><%= link_to 'Edit', edit_visit_path(visit) %></td>
+        <td><%= link_to 'Destroy', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Visit', new_visit_path %>
